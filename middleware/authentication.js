@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/User');
 const { UnauthenticatedError } = require('../errors');
 
 const auth = async (req, res, next) => {
@@ -14,7 +13,6 @@ const auth = async (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-
     req.user = { userId: payload.userId, name: payload.name };
     next();
   } catch (err) {
