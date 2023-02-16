@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 
 const express = require('express');
+const cors = require('cors');
 
 const connectDB = require('./db/connect');
 
@@ -13,6 +14,12 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 const app = express();
+
+app.use(
+  cors({
+    origin: 'https://jobs-api.netlify.app',
+  })
+);
 
 app.use(express.json());
 
